@@ -1,5 +1,6 @@
 const express = require("express")
 const Tarefa = require("./queries")
+const moment = require("moment")
 const app = express()
 
 app.use(express.json())
@@ -22,6 +23,9 @@ app.post("/api/project", (req, res) => {
 	let tarefa = req.body
 	tarefa.tasks = JSON.stringify(tarefa.tasks)
 
+	tarefa.dataCriacao = moment().format("YYYY-MM-DD hh:mm:ss")
+	tarefa.dataUpdate = moment().format("YYYY-MM-DD hh:mm:ss")
+
 	Tarefa.adiciona(tarefa)
 		.then((resultados) => res.status(201).json(resultados))
 		.catch((erros) => res.status(400).json(erros))
@@ -30,6 +34,9 @@ app.post("/api/project", (req, res) => {
 app.patch("/api/project/:id", (req, res) => {
 	const { id } = req.params
 	const tarefaUpdate = req.body
+
+	tarefaUpdate.dataUpdate = moment().format("YYYY-MM-DD hh:mm:ss")
+
 	if (tarefaUpdate.tasks) {
 		tarefaUpdate.tasks = JSON.stringify(tarefaUpdate.tasks)
 	}
