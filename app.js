@@ -27,7 +27,7 @@ app.post("/api/project", (req, res) => {
 	tarefa.dataUpdate = moment().format("YYYY-MM-DD hh:mm:ss")
 
 	Tarefa.adiciona(tarefa)
-		.then((resultados) => res.status(201).json(resultados))
+		.then((resultados) => res.status(201).json({ resultados, tarefa }))
 		.catch((erros) => res.status(400).json(erros))
 })
 
