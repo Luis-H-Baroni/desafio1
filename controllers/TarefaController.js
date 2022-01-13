@@ -124,7 +124,7 @@ class TarefaController {
 			const taskCriada = await database.Tasks.create(novaTask)
 			return res.status(201).json(taskCriada)
 		} catch (error) {
-			return res.status(500).json(error.message)
+			return res.status(404).json(error.message)
 		}
 	}
 
