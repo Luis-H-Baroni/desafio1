@@ -1,15 +1,13 @@
-const conexao = require("./conexaoBanco")
-const Tabelas = require("./tabelas")
-const app = require("./app")
+const express = require("express")
+const routes = require("./routes/index")
 
-conexao.connect((erro) => {
-	if (erro) {
-		console.log(erro)
-	} else {
-		console.log("banco conectado")
+const app = express()
+const porta = 3000
 
-		Tabelas.init(conexao)
+routes(app)
 
-		app.listen(3000, () => console.log("servidor rodando"))
-	}
+app.listen(porta, () => {
+	console.log(`Servidor rodando na porta ${porta}`)
 })
+
+module.exports = app
