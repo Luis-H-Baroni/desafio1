@@ -1,4 +1,4 @@
-const express = require("express")
+/* const express = require("express")
 const Tarefa = require("./queries")
 const moment = require("moment")
 const app = express()
@@ -55,3 +55,4 @@ app.delete("/api/project/:id", (req, res) => {
 })
 
 module.exports = app
+ */
